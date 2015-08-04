@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+  <head>
+    <title>Gishwhes</title>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="{% static 'js/gishwhes.js' %}"></script>
+
+    <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro:400,900' rel='stylesheet' type='text/css'>
+    
+    <style type="text/css">
+      body {
+      	font-family: 'Source Code Pro', ;
+          font-size: 48px;
+        }
+      .title-div {
+        width: 100%;
+        color: #F7D34B;
+        text-align: center;
+
+      }
+      .btn {
+        -webkit-border-radius: 20;
+        -moz-border-radius: 20;
+        border-radius: 20px;
+        color: #ffffff;
+        font-size: 20px;
+        background: #eb6c5b;
+        padding: 10px 20px 10px 20px;
+        text-decoration: none;
+      }
+
+      .btn:hover {
+        background: #f29083;
+        text-decoration: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class='title-div'>
+      <span id='name0' style='font-size: 5em; font-weight: bolder;'>{{ name }}</span><br />
+      <span style='font-size: .5em; color: #000000'><span id='name1'>{{ name }}</span> is part <span id="first">{{ first }}</span> and part <span id='second'>{{ second }}</span></span>
+    </div>
+    <div style='text-align: center'>
+      <button id="gbutton" class='btn'>Click here for a new mascot!</button>
+    </div>
+  </body>
+</html>
