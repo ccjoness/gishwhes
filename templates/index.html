@@ -1,49 +1,38 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
-  <head>
+<head>
     <title>Gishwhes</title>
-    
+    <link href="{% static 'css/literallycanvas.css' %}" rel="stylesheet">
+    <link href="{% static 'css/site.css' %}" rel="stylesheet">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/react/0.10.0/react-with-addons.js"></script>
+    <script src="{% static 'js/literallycanvas.js' %}"></script>
     <script src="{% static 'js/gishwhes.js' %}"></script>
 
     <link href='http://fonts.googleapis.com/css?family=Source+Code+Pro:400,900' rel='stylesheet' type='text/css'>
-    
-    <style type="text/css">
-      body {
-      	font-family: 'Source Code Pro', ;
-          font-size: 48px;
-        }
-      .title-div {
-        width: 100%;
-        color: #F7D34B;
-        text-align: center;
 
-      }
-      .btn {
-        -webkit-border-radius: 20;
-        -moz-border-radius: 20;
-        border-radius: 20px;
-        color: #ffffff;
-        font-size: 20px;
-        background: #eb6c5b;
-        padding: 10px 20px 10px 20px;
-        text-decoration: none;
-      }
 
-      .btn:hover {
-        background: #f29083;
-        text-decoration: none;
-      }
-    </style>
-  </head>
-  <body>
-    <div class='title-div'>
-      <span id='name0' style='font-size: 5em; font-weight: bolder;'>{{ name }}</span><br />
-      <span style='font-size: .5em; color: #000000'><span id='name1'>{{ name }}</span> is part <span id="first">{{ first }}</span> and part <span id='second'>{{ second }}</span></span>
-    </div>
-    <div style='text-align: center'>
-      <button id="gbutton" class='btn'>Click here for a new mascot!</button>
-    </div>
-  </body>
+</head>
+<body>
+<div class='title-div'>
+    <span id='name0' style='font-size: 15em; font-weight: bolder;'>{{ name }}</span><br/>
+    <span style='font-size: 2em; color: #000000'><span id='name1'>{{ name }}</span> is part <span
+            id="first">{{ first }}</span> and part <span
+            id='second'>{{ second }}</span></span>
+</div>
+<div style='text-align: center'>
+    <button id="gbutton" class='btn'>Click here for a new mascot!</button>
+</div>
+<div style="text-align: center"><h2>Draw your mascot and share it with everyone!</h2></div>
+<div class="literally" style="max-width: 800px; margin-left: auto; margin-right: auto;"></div>
+<form class="submit" style="max-width: 800px; margin-left: auto; margin-right: auto; text-align: center;">
+    {% csrf_token %}
+    <input type="submit" class="btn" data-action="upload-to-server" value="Click here to upload your drawing!">
+</form>
+{% include 'images.html' %}
+{% now "Y" as current_year %}
+<div style="padding-top: 15em; text-align: center;">Copyright {{ current_year }} Chris Jones</div>
+</body>
 </html>

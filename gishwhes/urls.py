@@ -15,9 +15,13 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'sitepages.views.index', name='home'),
     url(r'^new_name/', 'sitepages.views.get_another_name', name='new_name'),
-]
+    url(r'^img_up/', 'sitepages.views.img_upload', name='img'),
+    url(r'^images/', 'sitepages.views.images', name='images'),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

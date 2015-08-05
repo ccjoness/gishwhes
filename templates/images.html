@@ -1,0 +1,10 @@
+{% load static %}
+<div class="images" id="images-refresh">
+    {% for imgs in img %}
+        <div class="img-div">
+            <img src='photos/{{ imgs.image }}'><br>
+            {{ imgs.title }}<br>
+            Part {{ imgs.first }} and part {{ imgs.second }}
+        </div>
+    {% endfor %}
+</div>
