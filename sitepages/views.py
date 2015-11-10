@@ -16,7 +16,7 @@ animals = ['alligator', 'ant', 'bear', 'bee', 'bird', 'camel', 'cat', 'cheetah',
            'squirrel', 'tiger', 'turtle', 'zebra']
 
 
-def index(request):
+def random_name():
     first = random.choice(animals)
     first_h = first[:int(len(first) / 2) + 1]
     second = random.choice(animals)
@@ -24,6 +24,11 @@ def index(request):
         second = random.choice(animals)
     second_h = second[int(len(second) / 2) + 1:]
     name = (first_h + second_h).capitalize()
+    return first, second, name
+
+
+def index(request):
+    first, second, name = random_name()
     img = Image.objects.all().order_by('-id')
     context_dict = {'name': name, 'first': first.capitalize(), 'second': second.capitalize(), 'img': img}
     return render(request, 'index.html', context_dict)
@@ -31,13 +36,7 @@ def index(request):
 
 def get_another_name(request):
     if request.method == 'GET':
-        first = random.choice(animals)
-        first_h = first[:int(len(first) / 2) + 1]
-        second = random.choice(animals)
-        while first == second:
-            second = random.choice(animals)
-        second_h = second[int(len(second) / 2) + 1:]
-        name = (first_h + second_h).capitalize()
+        first, second, name = random_name()
         context_dict = {'name': name, 'first': first.capitalize(), 'second': second.capitalize()}
         # print(request)
         return HttpResponse(json.dumps(context_dict), 'application/javascript')
@@ -56,7 +55,6 @@ def img_upload(request):
         image_data = b64decode(b64_text)
         img.image = ContentFile(image_data, str(title) + '-' + str(uuid.uuid4()) + '.png')
         img.save()
-
     return HttpResponse('okay')
 
 
